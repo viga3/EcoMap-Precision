@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>EcoMap Precision - Mappa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "primary-container": "#00873a",
+                    "tertiary-fixed": "#ffdf9a",
+                    "inverse-primary": "#62df7d",
+                    "on-tertiary-fixed": "#251a00",
+                    "on-secondary-fixed-variant": "#004395",
+                    "outline": "#6e7b6c",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#dce2f3",
+                    "on-surface-variant": "#3e4a3d",
+                    "secondary-fixed": "#d8e2ff",
+                    "tertiary-container": "#936f00",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary-fixed": "#002109",
+                    "primary-fixed": "#7ffc97",
+                    "secondary-container": "#2170e4",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "surface-container-low": "#f0f3ff",
+                    "primary": "#006b2c",
+                    "on-error": "#ffffff",
+                    "tertiary": "#755800",
+                    "on-surface": "#151c27",
+                    "on-secondary-fixed": "#001a42",
+                    "inverse-surface": "#2a313d",
+                    "surface-container": "#e7eefe",
+                    "on-background": "#151c27",
+                    "surface-container-highest": "#dce2f3",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "surface-tint": "#006e2d",
+                    "surface-dim": "#d3daea",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#bdcaba",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#f7fff2",
+                    "inverse-on-surface": "#ebf1ff",
+                    "tertiary-fixed-dim": "#f7be1d",
+                    "primary-fixed-dim": "#62df7d",
+                    "secondary": "#0058be",
+                    "on-primary-fixed-variant": "#005320",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "touch-target": "48px",
+                    "gutter-mobile": "12px",
+                    "stack-md": "16px",
+                    "stack-lg": "24px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-sm-mobile": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-container {
+            height: calc(100vh - 56px - 64px); /* Viewport height minus header and footer roughly */
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .marker-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 107, 44, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 107, 44, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 107, 44, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface-dim h-touch-target flex items-center justify-between px-margin-mobile">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-touch-target h-touch-target transition-colors duration-200 active:scale-95 text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-lg text-primary dark:text-primary-fixed text-[24px]">EcoMap Precision</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden transition-colors duration-200 active:scale-95">
+<img class="w-full h-full object-cover" data-alt="A professional high-definition headshot of an environmental engineer in a clean, modern studio setting. The lighting is soft and flattering, with a bright white background consistent with a clean corporate UI. The subject wears professional business-casual attire, conveying dependability and expertise in the waste management sector." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHbw-xquC67INF_yCYkRN_hfTLXjKsPabbmhNyQ9ZJsitxeF5vQ1YDrA3S0aZ9aJcRZJP31ioPIwdVesxSwgrCVvQIzWuAhcNXLYk79ct3kXtr09BobcO2DqswqqvJ4P_kKKbQ7EqKchP6kQX7sfDN0EG_iy6prmeVRMMqlsEnBgmIvwxXR-tAB4m-EQdnOYT39Cx7zj5qgM6BNbDqgpUg7BplIo9uEtjUtP5HnPSKoSkVvzYX2us"/>
+</div>
+</div>
+</header>
+<!-- Map Canvas (Main Content) -->
+<main class="relative w-full h-[calc(100vh-120px)] overflow-hidden">
+<!-- Background Map Image -->
+<div class="absolute inset-0 z-0 bg-surface-container" data-location="Milan, Italy" style="">
+<div class="w-full h-full bg-cover bg-center opacity-90" data-alt="A clean, minimalist high-precision GIS map display of a modern European city grid. The map uses a sophisticated color palette of soft greys, muted greens, and clean whites. Small, vibrant icons representing waste collection points are scattered strategically across the streets. The lighting is bright and even, simulating a daylight navigation experience with high contrast for outdoor utility." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoOwcDgj2Q33D7MCrhvboYWCn1Gno20mGAMbCyQkzId3Bnmq40IgO9PagSK4htT-RvnVA5ypGN45OoLQoxEv5GIwoy1aufwlMmgju9iAmZ-cebOZuFWtP45SpW9QZO_4RsWoBqKskZ39iVQvtcbYfzZL2LeJ_3buaY8hRrEDI0b5QyKYopKxCj7R19mFXB4GFQG0EjMVyDSZzkYC0tPe8VfGJquAHN431URulQc9fkAm5xnqxFnIU')">
+</div>
+<div class="absolute top-[30%] left-[40%] pointer-events-auto cursor-pointer transition-transform active:scale-95"><span class="material-symbols-outlined text-primary text-[32px] drop-shadow-md">location_on</span></div><div class="absolute top-[60%] left-[70%] pointer-events-auto cursor-pointer transition-transform active:scale-95"><span class="material-symbols-outlined text-primary text-[32px] drop-shadow-md">location_on</span></div></div>
+<!-- Interactive Map Elements Overlay -->
+<div class="absolute inset-0 pointer-events-none z-10 p-4"><div class="hidden pointer-events-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] glass-panel p-4 rounded-xl border border-outline/20 shadow-lg z-50 flex flex-col gap-3" id="station-popup"><div class="flex justify-between items-start"><h3 class="font-headline-sm text-on-surface">Via Roma, Postazione 2</h3><button class="text-on-surface-variant"><span class="material-symbols-outlined">close</span></button></div><p class="text-body-md text-on-surface-variant">Punto di raccolta attivo per Plastica e Vetro.</p><button class="w-full bg-primary text-white py-3 rounded-lg font-label-md active:scale-95 transition-transform">Seleziona questa postazione</button></div>
+<!-- Search Bar Overlay -->
+<div class="pointer-events-auto flex w-full max-w-md mx-auto mb-4 glass-panel rounded-xl border border-outline/20 p-2 shadow-sm"><span class="material-symbols-outlined text-on-surface-variant p-2">location_on</span><input class="bg-transparent border-none focus:ring-0 w-full text-body-md font-body-md text-on-surface" placeholder="Cerca un indirizzo..." type="text"/><button class="p-2 text-primary"><span class="material-symbols-outlined">search</span></button></div>
+<!-- User Location Marker (Simulated) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-12 h-12 bg-primary/20 rounded-full marker-pulse"></div>
+<div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Floating Quick Stats -->
+<div class="absolute bottom-4 left-4 pointer-events-auto space-y-2">
+<div class="glass-panel px-4 py-2 rounded-lg border border-outline/10 flex items-center gap-3 shadow-sm">
+<div class="w-2 h-8 bg-primary rounded-full"></div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Qualità Aria</p>
+<p class="text-label-md text-primary">Ottima (24 AQI)</p>
+</div>
+</div>
+</div>
+<div class="hidden pointer-events-auto fixed top-24 left-4 right-4 bg-inverse-surface text-inverse-on-surface p-4 rounded-lg shadow-lg z-50 flex items-start gap-3 animate-in fade-in slide-in-from-top-4" id="distance-prompt"><span class="material-symbols-outlined text-tertiary-fixed">info</span><p class="text-label-md">Sei lontano da una postazione. Seleziona un punto sulla mappa o cerca un indirizzo per segnalare.</p></div></div>
+<!-- Floating Action Button (FAB) -->
+<div class="absolute bottom-8 right-6 z-20 flex flex-col items-end"><button class="group flex items-center gap-3 bg-[#ef4444] text-white px-6 py-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 hover:brightness-110 mb-4">
+<span class="material-symbols-outlined text-[28px]">report</span>
+<span class="font-label-md text-label-md">SEGNALA</span>
+</button>
+<button class="group flex items-center gap-3 bg-primary-container text-on-primary-container px-6 py-4 rounded-full shadow-lg transition-all duration-200 active:scale-90 hover:brightness-110">
+<span class="material-symbols-outlined text-[28px]">add</span>
+<span class="font-label-md text-label-md">Nuovo Rilevamento</span>
+</button>
+</div>
+<!-- Overlay for Waste Categories (Chunky filters) -->
+<div class="absolute top-20 left-0 w-full overflow-x-auto no-scrollbar flex gap-2 px-4 z-20 pointer-events-none">
+<button class="pointer-events-auto whitespace-nowrap bg-surface px-4 py-2 rounded-full border border-outline/20 text-label-md text-on-surface-variant flex items-center gap-2 active:bg-primary-container active:text-white transition-colors">
+<span class="w-3 h-3 rounded-full bg-[#eefb04]"></span> Multimateriale
+            </button>
+<button class="pointer-events-auto whitespace-nowrap bg-surface px-4 py-2 rounded-full border border-outline/20 text-label-md text-on-surface-variant flex items-center gap-2 active:bg-primary-container active:text-white transition-colors">
+<span class="w-3 h-3 rounded-full bg-[#10b981]"></span> Vetro
+            </button>
+<button class="pointer-events-auto whitespace-nowrap bg-surface px-4 py-2 rounded-full border border-outline/20 text-label-md text-on-surface-variant flex items-center gap-2 active:bg-primary-container active:text-white transition-colors">
+<span class="w-3 h-3 rounded-full bg-[#3b82f6]"></span> Carta
+            </button>
+<button class="pointer-events-auto whitespace-nowrap bg-surface px-4 py-2 rounded-full border border-outline/20 text-label-md text-on-surface-variant flex items-center gap-2 active:bg-primary-container active:text-white transition-colors">
+<span class="w-3 h-3 rounded-full bg-[#800000]"></span> Organico
+            </button>
+<button class="pointer-events-auto whitespace-nowrap bg-surface px-4 py-2 rounded-full border border-outline/20 text-label-md text-on-surface-variant flex items-center gap-2 active:bg-primary-container active:text-white transition-colors"> <span class="w-3 h-3 rounded-full bg-[#808080]"></span> Indifferenziato </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl">
+<!-- Map Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-sm text-label-sm">Mappa</span>
+</a>
+<!-- History Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 px-6 py-2 rounded-full transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Storico</span>
+</a>
+<!-- Profile Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 px-6 py-2 rounded-full transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profilo</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for the FAB to simulate feedback
+        const fab = document.querySelector('button.group');
+        fab.addEventListener('click', () => {
+            fab.classList.add('ring-4', 'ring-primary/30');
+            setTimeout(() => {
+                fab.classList.remove('ring-4', 'ring-primary/30');
+            }, 300);
+        });
+
+        // Simple touch feedback for nav items
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if(!item.classList.contains('bg-primary-container')) {
+                    // Logic to swap active state would go here in a real app
+                }
+            });
+        });
+
+        // Disable scrolling on map view for a more "app-like" feel
+        document.body.addEventListener('touchmove', function(e) {
+            if (e.target.closest('main')) {
+                // Keep the default map interaction behavior if it was a real map
+            }
+        }, { passive: false });
+    </script>
+</body></html>

@@ -1,0 +1,30 @@
+# Built application files
+*.apk
+*.aab
+*.ipa
+app-debug/
+app-debug.apk
+
+# Gradle & Android
+.gradle/
+build/
+app/build/
+app/app/build/
+local.properties
+*.hprof
+
+# Xcode & iOS
+xcuserdata/
+DerivedData/
+*.xcscmblueprint
+*.xccheckout
+Payload/
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS files
+Thumbs.db

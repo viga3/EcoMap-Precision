@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestione Segnalazioni - EcoMap Precision</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bdcaba;
+            border-radius: 10px;
+        }
+        .waste-indicator-red { border-left: 4px solid #ba1a1a; }
+        .waste-indicator-amber { border-left: 4px solid #755800; }
+        .waste-indicator-green { border-left: 4px solid #006b2c; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#755800",
+                      "tertiary-container": "#936f00",
+                      "surface-container-highest": "#dce2f3",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "primary-container": "#00873a",
+                      "on-secondary-fixed-variant": "#004395",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#0058be",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "outline": "#6e7b6c",
+                      "tertiary-fixed-dim": "#f7be1d",
+                      "inverse-surface": "#2a313d",
+                      "secondary-container": "#2170e4",
+                      "on-tertiary-container": "#fffbff",
+                      "background": "#f9f9ff",
+                      "surface": "#f9f9ff",
+                      "outline-variant": "#bdcaba",
+                      "on-tertiary-fixed-variant": "#5a4300",
+                      "on-surface": "#151c27",
+                      "on-secondary-fixed": "#001a42",
+                      "primary": "#006b2c",
+                      "on-tertiary-fixed": "#251a00",
+                      "surface-dim": "#d3daea",
+                      "primary-fixed": "#7ffc97",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-background": "#151c27",
+                      "on-primary-fixed-variant": "#005320",
+                      "secondary-fixed": "#d8e2ff",
+                      "tertiary-fixed": "#ffdf9a",
+                      "on-primary-fixed": "#002109",
+                      "inverse-on-surface": "#ebf1ff",
+                      "surface-variant": "#dce2f3",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#006e2d",
+                      "surface-container-low": "#f0f3ff",
+                      "surface-container-high": "#e2e8f8",
+                      "on-primary-container": "#f7fff2",
+                      "primary-fixed-dim": "#62df7d",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-primary": "#62df7d",
+                      "on-surface-variant": "#3e4a3d",
+                      "surface-container": "#e7eefe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter-mobile": "12px",
+                      "base": "4px",
+                      "stack-md": "16px",
+                      "touch-target": "48px",
+                      "stack-sm": "8px",
+                      "stack-lg": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface-container dark:bg-surface-container-high transition-colors duration-200">
+<div class="flex items-center justify-between px-margin-mobile h-touch-target w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-variant rounded-full transition-colors active:scale-95" data-icon="menu">menu</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Segnalazioni Ricevute</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a waste management operator wearing a reflective safety vest, high-quality photography, outdoor daylight lighting, corporate environmental aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoCf9FbqP0J_OwT85DU85jZ-fA2Uz-u21Z2wqCjChe5-mH-8k8_sLObIkHRz_htluUCElhovytd8SUe5ivByK_wKGKoW0KsKwbm081I5ZxiXbjOjgsjQGYlwyeAdiSfYFTBFsRJG7Q3KUmbhQEhv8ZM-CUtIOr3ed8EbLXo3FOw6Dgy0py-a5EqE22q16Wo2JVJgWPyqT6JFdV7BinvoI61STW8jbTpPi02YEbmETw8XaLx3DNsV8"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full max-w-md px-margin-mobile pt-stack-lg pb-32 flex flex-col gap-stack-md">
+<!-- Filter Chips -->
+<div class="flex gap-stack-sm overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
+<span class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-transform">Tutte (24)</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-transform border border-outline-variant">Abbandoni</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-transform border border-outline-variant">Cassonetti</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-transform border border-outline-variant">Ingombranti</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 transition-transform border border-outline-variant">Bombole</span></div>
+<!-- Section Title -->
+<div class="flex justify-between items-center mt-base">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Gestione Segnalazioni</h2>
+<button class="flex items-center gap-2 bg-surface-container-highest text-primary px-3 py-1.5 rounded-lg font-label-md text-label-md border border-outline-variant active:scale-95 transition-transform mr-2"><span class="material-symbols-outlined text-sm">picture_as_pdf</span>Esporta PDF</button><button class="material-symbols-outlined text-outline" data-icon="tune">tune</button>
+</div>
+<!-- Reports List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Report Item 1: Abbandoni -->
+<div class="bg-surface-container-lowest waste-indicator-red rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="delete">delete</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Abbandono rifiuti</p>
+<p class="text-on-surface-variant text-sm">Via del Corso, 412</p>
+</div>
+</div>
+<span class="bg-error-container text-error font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">Nuovo</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant text-sm">10:15</span>
+</div>
+<div class="w-16 h-12 rounded-lg bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A photograph of illegal waste dumping on a city sidewalk in Rome, featuring discarded plastic bags and cardboard boxes next to an overflowing green bin, high contrast, documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuxwNwZQj9PCd9UCE4v1Z5Szr0guHxck-54Xv5t7-rHHTMD8qWpT9EuV0S7eGxAu80pbS9C2JOV2GwHmMW3d65e6ZKi-gBTuIzdSVsash7FTKY-1qBAfBzy5u-9AupQcbFMC02cfGXIkuhZUDPqkOrStbPKGFQuT_0I6c36q_DlBEFNjAQK7_Ql4Nsktkx0uZoH3r-B5EirfGC7gTMmYSJq72Ii7_geR_eIVTidkt3lpNurV0sO1E"/>
+</div>
+</div>
+</div>
+<!-- Report Item 2: Ingombranti -->
+<div class="bg-surface-container-lowest waste-indicator-amber rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="chair">chair</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Ingombranti</p>
+<p class="text-on-surface-variant text-sm">Piazza di Spagna, 12</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-tertiary-container font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">In Carico</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant text-sm">09:45</span>
+</div>
+<div class="w-16 h-12 rounded-lg bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="An old, worn-out brown leather sofa abandoned on a cobblestone street corner, cinematic lighting, sharp details, urban decay environmental photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDqcSBYyfEEeVchZHGdllEaFLR99dkqua_tcRzH-AoUsVz2AKMwhT8b62cxlNypaYtxEEGaTiG4huPFHtiBhtGjR_0OyzFPqq0RQ7YtwuYjCw-86Uk3_6z_bV-WivyBWVeAnSmY_J6a2Xi3nfKm-t-l-NnBKMU0CL76zc6Bh9L-39gbRJKddgMNXqAngQbnVjUX_uBUoyuy4j1dyhQO8PqZb916qUkX29AmYWMZLrEpaJgVraA68g"/>
+</div>
+</div>
+</div>
+<!-- Report Item 3: Bombole -->
+<div class="bg-surface-container-lowest waste-indicator-red rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded-lg flex items-center justify-center"><img alt="Bombole" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRLp4MlYPKwFU4pqBnz7J4HAlUGCMJaQda52zU4Co0GilqHAhJIA0ElgStYAbS-azu8CwmtU2PZ1CCGl7Wk-PnizXnYVsVLE0f4ADvxYF2pJNJnNDFUCWTkZiZtqXW0crQA3nVfpKL2LwILLvncoP9em1HT_axHiNz0sF4mvPnOA2FAlCZ9QdK2uMfWIMWmBj5MZT-RN6djbVPxWn0Rs6lPGnulBykDKIvofKJU1V3vATdhJbtsf4"/></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Bombole abbandonate</p>
+<p class="text-on-surface-variant text-sm">Via Frattina, 8</p>
+</div>
+</div>
+<span class="bg-error-container text-error font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">Nuovo</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant text-sm">08:30</span>
+</div>
+<div class="w-16 h-12 rounded-lg bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Two rusty orange gas cylinders left against a graffiti-covered wall in a narrow Italian alleyway, morning sunlight casting long shadows, industrial waste aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClwcqeACT4nrkMp2RGovUtwEXsttos5eJzqppzpfpu0prgpr3d6muDVg8cOUWlNIQIVOsBMr_N9lu0YFILeWjbqwkyqWYzx7QEEQHRaJ_j4QjYeAvYFaq9zfexz_xMYUXk3g4zNQMUazCiyY6WC13GChlEXRvGqLGmfRipvX8RboaW4BXuKQsFwkw9k0VjhZPBkj9slD4npv2C-WyQ6LqPyD9fr6s7zH9ebLTEKi5ZXHvzrpXYtg0"/>
+</div>
+</div>
+</div>
+<!-- Report Item 4: Sacchi a terra -->
+<div class="bg-surface-container-lowest waste-indicator-red rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Sacchi a terra</p>
+<p class="text-on-surface-variant text-sm">Viale delle Milizie, 102</p>
+</div>
+</div>
+<span class="bg-error-container text-error font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">Nuovo</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant text-sm">08:15</span>
+</div>
+<div class="w-16 h-12 rounded-lg bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Several black plastic trash bags piled on the pavement next to a modern metal bin, daylight photography, urban waste management context, high detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Ux-A_jqskvH2IsmqXmIer9gpCdxPqRF1BbiS30B6LNLpBEH8W-mTQfUSGHnuVDFvSy-CPQ-U3paYVz5M6VoMQUapFee2-J0CGZx_Y4fhar1Vvcoq8JswLsYLPKE0l9634QhkBy27R8xFAGw2K-l_XtWgLo_UL4yzpYPqx8eR_h5UoMe69Zai6eJ8LCI7B695AImVfRrxMlAevgCAWkd6Jh8bKusksuLmMqj5A-Gkuq-D82is3D0"/>
+</div>
+</div>
+</div>
+<!-- Report Item 5: Cassonetto bloccato -->
+<div class="bg-surface-container-lowest waste-indicator-amber rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="lock_reset">lock_reset</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Cassonetto bloccato</p>
+<p class="text-on-surface-variant text-sm">Via Condotti, 21</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-tertiary-container font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">In Carico</span>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant text-sm">07:50</span>
+</div>
+<div class="flex items-center justify-center w-16 h-12 rounded-lg bg-surface-container border border-outline-variant">
+<span class="material-symbols-outlined text-outline-variant" data-icon="no_photography">no_photography</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest waste-indicator-red rounded-xl p-4 flex flex-col gap-3 shadow-sm border border-outline-variant transition-colors hover:bg-surface-bright cursor-pointer"><div class="flex justify-between items-start"><div class="flex items-center gap-3"><div class="w-12 h-12 bg-error-container text-on-error-container rounded-lg flex items-center justify-center"><img alt="Rifiuti Speciali" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN2HmBeU7F1VB0ppf7rD3szGkA2EE3Nyh9mLmTrEGg4bH1OS3OBOTi9SorTkdCcdXJcdV32acq5HQmUeXH2zOsTwm4fre9gzujrjnjCg_nmxN0iejY9EcHAJzPcgJSxGY50v_2UfxXbxWVZPLTt2RBKnlXk6PDJWf8m15n9KbXKxG5QDO4tgQ2y_1vRKyYQPL5UgI9BYYdRexe7Y_NmzX4o2epI55hOZz1dDvjnsQ-QWldQuvPXac"/></div><div><p class="font-label-md text-label-md text-on-surface">Rifiuti Speciali</p><p class="text-on-surface-variant text-sm">Via Appia Nuova, 15</p></div></div><span class="bg-error-container text-error font-label-sm text-label-sm px-2 py-1 rounded uppercase tracking-wider font-bold">Nuovo</span></div><div class="flex justify-between items-end"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-sm">schedule</span><span class="text-on-surface-variant text-sm">07:30</span></div><div class="flex items-center justify-center w-16 h-12 rounded-lg bg-surface-container border border-outline-variant"><span class="material-symbols-outlined text-outline-variant">no_photography</span></div></div></div></div>
+</main>
+<!-- FAB for quick action -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl transition-colors duration-200">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 px-4 py-1 rounded-full cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-sm text-label-sm">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-1 cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 px-4 py-1 rounded-full cursor-pointer active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for list items
+        document.querySelectorAll('.waste-indicator-red, .waste-indicator-amber').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.classList.add('scale-[0.98]');
+            });
+            card.addEventListener('mouseup', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Filter chip selection logic
+        const chips = document.querySelectorAll('.rounded-full.font-label-md');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary-container', 'text-on-primary-container');
+                    c.classList.add('bg-surface-container-highest', 'text-on-surface-variant', 'border', 'border-outline-variant');
+                });
+                chip.classList.remove('bg-surface-container-highest', 'text-on-surface-variant', 'border', 'border-outline-variant');
+                chip.classList.add('bg-primary-container', 'text-on-primary-container');
+            });
+        });
+    </script>
+</body></html>

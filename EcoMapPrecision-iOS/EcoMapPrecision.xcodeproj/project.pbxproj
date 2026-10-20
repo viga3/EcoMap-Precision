@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1001 /* EcoMapPrecisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2001 /* EcoMapPrecisionApp.swift */; };
+		1002 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002 /* AppColors.swift */; };
+		1003 /* TipoRifiuto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003 /* TipoRifiuto.swift */; };
+		1004 /* TipoSegnalazione.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2004 /* TipoSegnalazione.swift */; };
+		1005 /* StatoSegnalazione.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005 /* StatoSegnalazione.swift */; };
+		1006 /* Postazione.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006 /* Postazione.swift */; };
+		1007 /* Segnalazione.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2007 /* Segnalazione.swift */; };
+		1008 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2008 /* LocationManager.swift */; };
+		1009 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2009 /* DataStore.swift */; };
+		1010 /* PdfReportGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010 /* PdfReportGenerator.swift */; };
+		1011 /* WasteCounterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2011 /* WasteCounterRow.swift */; };
+		1012 /* DrawerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2012 /* DrawerMenu.swift */; };
+		1013 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013 /* MapView.swift */; };
+		1014 /* SelectLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2014 /* SelectLocationMapView.swift */; };
+		1015 /* AddPostazioneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2015 /* AddPostazioneView.swift */; };
+		1016 /* StoricoPostazioniView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2016 /* StoricoPostazioniView.swift */; };
+		1017 /* AddSegnalazioneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017 /* AddSegnalazioneView.swift */; };
+		1018 /* SegnalazioniRicevuteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018 /* SegnalazioniRicevuteView.swift */; };
+		1019 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2019 /* ProfileView.swift */; };
+		1020 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2020 /* SettingsView.swift */; };
+		1021 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021 /* MainTabView.swift */; };
+		1022 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2022 /* LaunchScreen.storyboard */; };
+		1023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2023 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0001 /* EcoMapPrecision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoMapPrecision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2001 /* EcoMapPrecisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoMapPrecisionApp.swift; sourceTree = "<group>"; };
+		2002 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		2003 /* TipoRifiuto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipoRifiuto.swift; sourceTree = "<group>"; };
+		2004 /* TipoSegnalazione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipoSegnalazione.swift; sourceTree = "<group>"; };
+		2005 /* StatoSegnalazione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatoSegnalazione.swift; sourceTree = "<group>"; };
+		2006 /* Postazione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Postazione.swift; sourceTree = "<group>"; };
+		2007 /* Segnalazione.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnalazione.swift; sourceTree = "<group>"; };
+		2008 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		2009 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		2010 /* PdfReportGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfReportGenerator.swift; sourceTree = "<group>"; };
+		2011 /* WasteCounterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteCounterRow.swift; sourceTree = "<group>"; };
+		2012 /* DrawerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenu.swift; sourceTree = "<group>"; };
+		2013 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		2014 /* SelectLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapView.swift; sourceTree = "<group>"; };
+		2015 /* AddPostazioneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostazioneView.swift; sourceTree = "<group>"; };
+		2016 /* StoricoPostazioniView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoricoPostazioniView.swift; sourceTree = "<group>"; };
+		2017 /* AddSegnalazioneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSegnalazioneView.swift; sourceTree = "<group>"; };
+		2018 /* SegnalazioniRicevuteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnalazioniRicevuteView.swift; sourceTree = "<group>"; };
+		2019 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2020 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2021 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		2022 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4001 = {
+			isa = PBXGroup;
+			children = (
+				4002 /* EcoMapPrecision */,
+				4003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4002 /* EcoMapPrecision */ = {
+			isa = PBXGroup;
+			children = (
+				4004 /* App */,
+				4005 /* Models */,
+				4006 /* Services */,
+				4007 /* Theme */,
+				4008 /* Views */,
+				2023 /* Assets.xcassets */,
+			);
+			path = EcoMapPrecision;
+			sourceTree = "<group>";
+		};
+		4003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0001 /* EcoMapPrecision.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2001 /* EcoMapPrecisionApp.swift */,
+				2024 /* Info.plist */,
+				2022 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2003 /* TipoRifiuto.swift */,
+				2004 /* TipoSegnalazione.swift */,
+				2005 /* StatoSegnalazione.swift */,
+				2006 /* Postazione.swift */,
+				2007 /* Segnalazione.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2008 /* LocationManager.swift */,
+				2009 /* DataStore.swift */,
+				2010 /* PdfReportGenerator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4007 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2002 /* AppColors.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		4008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2021 /* MainTabView.swift */,
+				4009 /* Components */,
+				4010 /* Map */,
+				4011 /* Postazioni */,
+				4012 /* Segnalazioni */,
+				4013 /* Profile */,
+				4014 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4009 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2011 /* WasteCounterRow.swift */,
+				2012 /* DrawerMenu.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4010 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2013 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		4011 /* Postazioni */ = {
+			isa = PBXGroup;
+			children = (
+				2014 /* SelectLocationMapView.swift */,
+				2015 /* AddPostazioneView.swift */,
+				2016 /* StoricoPostazioniView.swift */,
+			);
+			path = Postazioni;
+			sourceTree = "<group>";
+		};
+		4012 /* Segnalazioni */ = {
+			isa = PBXGroup;
+			children = (
+				2017 /* AddSegnalazioneView.swift */,
+				2018 /* SegnalazioniRicevuteView.swift */,
+			);
+			path = Segnalazioni;
+			sourceTree = "<group>";
+		};
+		4013 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2019 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4014 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2020 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5001 /* EcoMapPrecision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6001 /* Build configuration list for PBXNativeTarget "EcoMapPrecision" */;
+			buildPhases = (
+				7001 /* Sources */,
+				3001 /* Frameworks */,
+				7002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoMapPrecision;
+			productName = EcoMapPrecision;
+			productReference = 0001 /* EcoMapPrecision.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					5001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 6002 /* Build configuration list for PBXProject "EcoMapPrecision" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = it;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				it,
+				Base,
+			);
+			mainGroup = 4001;
+			productRefGroup = 4003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5001 /* EcoMapPrecision */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1022 /* LaunchScreen.storyboard in Resources */,
+				1023 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1001 /* EcoMapPrecisionApp.swift in Sources */,
+				1002 /* AppColors.swift in Sources */,
+				1003 /* TipoRifiuto.swift in Sources */,
+				1004 /* TipoSegnalazione.swift in Sources */,
+				1005 /* StatoSegnalazione.swift in Sources */,
+				1006 /* Postazione.swift in Sources */,
+				1007 /* Segnalazione.swift in Sources */,
+				1008 /* LocationManager.swift in Sources */,
+				1009 /* DataStore.swift in Sources */,
+				1010 /* PdfReportGenerator.swift in Sources */,
+				1011 /* WasteCounterRow.swift in Sources */,
+				1012 /* DrawerMenu.swift in Sources */,
+				1013 /* MapView.swift in Sources */,
+				1014 /* SelectLocationMapView.swift in Sources */,
+				1015 /* AddPostazioneView.swift in Sources */,
+				1016 /* StoricoPostazioniView.swift in Sources */,
+				1017 /* AddSegnalazioneView.swift in Sources */,
+				1018 /* SegnalazioniRicevuteView.swift in Sources */,
+				1019 /* ProfileView.swift in Sources */,
+				1020 /* SettingsView.swift in Sources */,
+				1021 /* MainTabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EcoMapPrecision/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.michelevillani.ecomapprecision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EcoMapPrecision/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.michelevillani.ecomapprecision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6001 /* Build configuration list for PBXNativeTarget "EcoMapPrecision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9003 /* Debug */,
+				9004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6002 /* Build configuration list for PBXProject "EcoMapPrecision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9001 /* Debug */,
+				9002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8001 /* Project object */;
+}

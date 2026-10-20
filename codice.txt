@@ -1,0 +1,20 @@
+App per segnalazioni               123456
+
+Agg. Back-up e ripristino Posizioni ok
+Correggere bag numerazione postazioni, ok
+data ultimo rilevamento nello storico, ok
+mappa in tempo reale, ok
+icona vetro e carta e colore multi, ok
+backup e ripristino copia doppioni + cartella proprietaria +: possibilità di cancellare tutto o una parte, ?
+numero bombole (colore) , ok
+quale cassonetto bloccato, ok
+abilitare foto, ok
+pulsanti del + più grandi, ok
+box raee e panni, poterli aggiungere da pulsante, ok
+poter spostare postazione già messa sulla mappa, ok
+Non becca bene i punti, ?
+programma per PC per editing ,
+blindare API Key solo per la mia app e non visibile in apk. ok
+Togli ogni visibilità che è stata fatta con intelligenza artificiale e la key api fai in modo che non sia visibile ok
+
+C:\Users\Michele\AppData\Local\Android\Sdk\platform-tools\adb.exe install -r app\build\outputs\apk\debug\app-debug.apk

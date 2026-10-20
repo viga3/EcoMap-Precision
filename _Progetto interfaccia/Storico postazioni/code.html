@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="light" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>EcoMap Precision - Storico Rilevamenti</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary": "#ffffff",
+                "background": "#f9f9ff",
+                "primary-container": "#00873a",
+                "tertiary-fixed": "#ffdf9a",
+                "inverse-primary": "#62df7d",
+                "on-tertiary-fixed": "#251a00",
+                "on-secondary-fixed-variant": "#004395",
+                "outline": "#6e7b6c",
+                "secondary-fixed-dim": "#adc6ff",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-variant": "#dce2f3",
+                "on-surface-variant": "#3e4a3d",
+                "secondary-fixed": "#d8e2ff",
+                "tertiary-container": "#936f00",
+                "on-secondary-container": "#fefcff",
+                "on-primary-fixed": "#002109",
+                "primary-fixed": "#7ffc97",
+                "secondary-container": "#2170e4",
+                "on-tertiary-fixed-variant": "#5a4300",
+                "surface-container-low": "#f0f3ff",
+                "primary": "#006b2c",
+                "on-error": "#ffffff",
+                "tertiary": "#755800",
+                "on-surface": "#151c27",
+                "on-secondary-fixed": "#001a42",
+                "inverse-surface": "#2a313d",
+                "surface-container": "#e7eefe",
+                "on-background": "#151c27",
+                "surface-container-highest": "#dce2f3",
+                "on-tertiary-container": "#fffbff",
+                "on-secondary": "#ffffff",
+                "surface-bright": "#f9f9ff",
+                "surface-tint": "#006e2d",
+                "surface-dim": "#d3daea",
+                "on-error-container": "#93000a",
+                "outline-variant": "#bdcaba",
+                "surface": "#f9f9ff",
+                "on-primary-container": "#f7fff2",
+                "inverse-on-surface": "#ebf1ff",
+                "tertiary-fixed-dim": "#f7be1d",
+                "primary-fixed-dim": "#62df7d",
+                "secondary": "#0058be",
+                "on-primary-fixed-variant": "#005320",
+                "surface-container-high": "#e2e8f8",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "base": "4px",
+                "touch-target": "48px",
+                "gutter-mobile": "12px",
+                "stack-md": "16px",
+                "stack-lg": "24px",
+                "stack-sm": "8px"
+            },
+            "fontFamily": {
+                "headline-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-sm-mobile": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        body {
+            background-color: #F9FAFB; /* Surface 0 */
+            color: #151c27;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .custom-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s ease;
+        }
+
+        .custom-card:active {
+            transform: scale(0.98);
+            background-color: #f0f3ff;
+        }
+
+        /* Waste Colors for indicators */
+        .waste-gray { background-color: #6B7280; }
+        .waste-blue { background-color: #3B82F6; }
+        .waste-green { background-color: #10B981; }
+        .waste-yellow { background-color: #F59E0B; }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-surface-dim transition-colors duration-200">
+<div class="flex items-center justify-between px-margin-mobile h-touch-target w-full">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 hover:bg-surface-variant/20 rounded-full active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary">Storico Rilevamenti</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed-dim">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a person looking friendly and efficient, set against a clean, modern corporate background with soft natural lighting and high-contrast professional editing. The style is consistent with a modern functional utility application for a dependability-focused brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBPjg6p6tsBffqP21SXW0IV66xnijQeZzV6OfHnjFR7FdL7-KADn-0AAEyWDgUla8t2k2Y2EhyI8Jqb7Z0kcZ6dX77NnrDa6oZ9FYyPbNNtEweQVkE4wWS1tmRUkfCa1qP6E5CEXpD0JKihxdxyNeh6ODmNxRUy3juEDbFwBOYa8NBURFVABucShiwU1o57xS2WwcMQCPlXjIOP1XgBnpdGENKPMDyua0Nqhbi-qdZduzYo2ZCfwM"/>
+</div>
+</div>
+<!-- Search/Filter Bar -->
+<div class="px-margin-mobile pb-4">
+<div class="flex items-center bg-surface-container rounded-xl px-4 py-2 gap-3 border border-outline-variant/30">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-body-md font-body-md placeholder:text-on-surface-variant/50" placeholder="Cerca indirizzo o data..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto px-margin-mobile pt-stack-md pb-32 space-y-stack-md">
+<!-- Summary Stats Section (Modern Utility Pattern) -->
+<section class="grid grid-cols-2 gap-3 mb-stack-lg">
+<div class="bg-primary-container/10 p-4 rounded-xl border border-primary/20">
+<p class="font-label-sm text-label-sm text-primary mb-1">Totale Bins</p>
+<h3 class="font-display-lg text-2xl text-primary">124</h3>
+</div>
+<div class="bg-secondary-container/10 p-4 rounded-xl border border-secondary/20">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Rilevamenti</p>
+<h3 class="font-display-lg text-2xl text-secondary">12</h3>
+</div>
+</section>
+<!-- History List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Card 1 -->
+<div class="custom-card p-4 rounded-xl flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">12 Ottobre 2023 • 14:30</span>
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface mt-1">Via della Conciliazione, 4 - Postazione 1</h2>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Map Thumbnail (Asymmetric UI Detail) -->
+<div class="w-full h-24 rounded-lg bg-surface-container overflow-hidden relative mb-1">
+<div class="absolute inset-0 bg-cover bg-center" data-location="Rome, Italy" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBU2_endJ_Qo8tz39MhsOIAhAsvEP7PvYthqy6sPLrBnhJHkEexiazNj5-LVB-JmFAoxrmugR8-TK8yC_3reHbbJ3MD_x8EiC4fPPcVqgq8HJHr0wMvB0yZJmhQ8C09c7T-mxld_cEgVYakbBfbVu9HJf0Urg5KcLDZDijnKIbCpNH8tJn1oW1_yz_p_Tja_fhwBYIWIzBhazg5cbGgqBMPxhg_9Hyu-2RMkHSWds7vJagN4O0TCw')"></div>
+<div class="absolute inset-0 bg-black/5"></div>
+<div class="absolute bottom-2 right-2 bg-white px-2 py-1 rounded shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="text-[10px] font-bold text-on-surface">41.9022° N</span>
+</div>
+</div>
+<!-- Bin Counts -->
+<div class="flex flex-wrap gap-2 pt-2 border-t border-outline-variant/20">
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-gray"></div>
+<span class="font-label-md text-label-md">1 Indifferenziata</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-blue"></div>
+<span class="font-label-md text-label-md">2 Carta</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-yellow"></div>
+<span class="font-label-md text-label-md">1 Plastica</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="custom-card p-4 rounded-xl flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">08 Ottobre 2023 • 09:15</span>
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface mt-1">Via della Conciliazione, 60 - Postazione 2</h2>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Bin Counts -->
+<div class="flex flex-wrap gap-2 pt-2">
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-gray"></div>
+<span class="font-label-md text-label-md">3 Indifferenziata</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-green"></div>
+<span class="font-label-md text-label-md">2 Vetro</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="custom-card p-4 rounded-xl flex flex-col gap-3 opacity-80">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">25 Settembre 2023 • 18:45</span>
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface mt-1">Via del Corso, 412 - Postazione 1</h2>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- Bin Counts -->
+<div class="flex flex-wrap gap-2 pt-2">
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-blue"></div>
+<span class="font-label-md text-label-md">1 Carta</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full waste-yellow"></div>
+<span class="font-label-md text-label-md">4 Plastica</span>
+</div>
+</div>
+</div>
+<!-- Card 4 (Newest Pattern) -->
+<div class="custom-card p-4 rounded-xl flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Oggi • 08:20</span>
+<h2 class="font-headline-sm text-headline-sm-mobile text-on-surface mt-1">Via del Corso, 2 - Postazione 2</h2>
+</div>
+<span class="material-symbols-outlined text-primary">bookmark</span>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<div class="flex items-center gap-2 bg-primary-container text-on-primary-container px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">recycling</span>
+<span class="font-label-md text-label-md">6 Bins Rilevati</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center items-center pt-4 pb-2 opacity-50"><p class="text-[10px] font-label-sm uppercase tracking-widest text-on-surface-variant">EcoMap Precision by Michele Villani</p></div></main>
+<!-- FAB for New Detection (Only on History/Home) -->
+<button class="fixed bottom-24 right-4 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add_location_alt</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl transition-all duration-300 border-t border-outline-variant/10">
+<!-- Map Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 transition-colors px-4 py-1 rounded-full group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">map</span>
+<span class="font-label-sm text-label-sm">Map</span>
+</a>
+<!-- History Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<!-- Profile Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-variant/50 transition-colors px-4 py-1 rounded-full group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for list items
+        document.querySelectorAll('.custom-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Haptic feedback simulation
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(5);
+                }
+            });
+        });
+    </script>
+</body></html>
